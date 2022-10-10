@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 3002;
 const io = new Server(PORT);
 
 //Creating namespace
-const ada = io.off('/ada');
+const ada = io.of('/ada');
 
 // Connect to server
 io.on('connection', (socket) => {
@@ -21,9 +21,9 @@ ada.on('connection', (socket) => {
     console.log(`You have entered the ${room} room`);
   });
 
-  socket.on('PICKUP', (payload) => {
-    eventLogger('PICKUP', payload);
-    ada.emit('PICKUP', payload);
+  socket.on('RECEIVED', (payload) => {
+    eventLogger('RECEIVED', payload);
+    ada.emit('RECEIVED', payload);
 
   });
 
@@ -32,9 +32,9 @@ ada.on('connection', (socket) => {
     ada.emit('TRANSIT', payload);
   });
 
-  socket.on('DELIVERY', (payload) => {
-    eventLogger('DELIVERY', payload);
-    ada.emit('DELIVERY', payload);
+  socket.on('DELIVERED', (payload) => {
+    eventLogger('DELIVERED', payload);
+    ada.emit('DELIVERED', payload);
   });
 
 });
@@ -44,3 +44,5 @@ function eventLogger(event, payload) {
   const time = date.toTimeString();
   console.log('EVENT', { event, time, payload });
 }
+
+

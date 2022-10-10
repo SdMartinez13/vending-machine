@@ -12,13 +12,13 @@ const deliverOrder = createDeliveryOrder(socket);
 
 socket.emit('JOIN', 'ada');
 
-socket.on('PICKUP', transitOrder);
+socket.on('RECEIVED', transitOrder);
 socket.on('TRANSIT', deliverOrder);
 
 socket.on('connect', () => {
   console.log(socket.id);
 });
 
-socket.on('disconnect', ( )=> {
+socket.on('disconnect', ()=> {
   console.log(socket.id);
 });
