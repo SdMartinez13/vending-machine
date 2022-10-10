@@ -21,7 +21,7 @@ socket.on('connect', () => {
       walletAddress: chance.hash(),
     };
     console.log('|------------------New Order Received-----------------------|');
-    socket.emit('PICKUP', { order });
+    socket.emit('RECEIVED', { order });
 
   }, 9000);
 
